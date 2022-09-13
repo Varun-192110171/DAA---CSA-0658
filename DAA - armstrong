@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+int Check_Armstrong (int, int);
+int main()
+{
+  int Number, Sum = 0, Times =0,Temp;
+  printf("ARMSTRONG NUMBER USING RECURSION");
+  printf("\nPlease Enter number to Check for Armstrong \n");
+  scanf("%d", &Number);
+  Temp = Number;
+  while (Temp != 0) 
+   {
+     Times = Times + 1;
+     Temp = Temp / 10;
+   }
+  Sum = Check_Armstrong (Number, Times);
+  printf("Sum of entered number is = %d\n", Sum);
+  if ( Number == Sum )
+      printf("\n%d is Armstrong Number.\n", Number);
+  else
+      printf("%d is not the Armstrong Number.\n", Number);
+  return 0;
+}
+int Check_Armstrong (int Number, int Times)
+{
+  static int Reminder, Sum = 0;
+  if (Number > 0)
+   {
+     Reminder = Number %10;
+     Sum = Sum + pow(Reminder, Times);
+     Check_Armstrong (Number /10, Times);
+     return Sum;
+   }
+   else
+     return 0;
+}  
