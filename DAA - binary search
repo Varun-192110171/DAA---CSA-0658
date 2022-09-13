@@ -1,0 +1,59 @@
+#include <stdio.h>
+void search(int [], int, int, int);
+void sort(int [], int);
+int main()
+{
+    int key, size, i;
+    int list[25];
+    printf("Enter size of a list: ");
+    scanf("%d", &size);
+    printf("Enter elements\n");
+    for(i = 0; i < size; i++)
+    {
+        scanf("%d",&list[i]);
+    }
+    sort(list, size);
+    printf("\n");
+    printf("Enter key to search\n");
+    scanf("%d", &key);
+    search(list, 0, size, key);
+}
+void sort(int list[], int size)
+{
+    int temp, i, j;
+    for (i = 0; i < size; i++)
+    {
+        for (j = i; j < size; j++)
+        {
+            if (list[i] > list[j])
+            {
+                temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+        }
+    }
+}
+void search(int list[], int low, int high, int key)
+{
+    int mid;
+    if (low > high)
+    {
+        printf("Key not found\n");
+        return;
+    }
+    mid = (low + high) / 2;
+    if (list[mid] == key)
+    {
+        printf("Key found\n");
+        printf("at index %d",list[mid]-1);
+    }
+    else if (list[mid] > key)
+    {
+        search(list, low, mid - 1, key);
+    }
+    else if (list[mid] < key)
+    {
+        search(list, mid + 1, high, key);
+    }
+}
