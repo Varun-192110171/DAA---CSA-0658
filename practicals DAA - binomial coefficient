@@ -1,0 +1,23 @@
+#include<stdio.h>
+int binomialcoeff(int n,int r)
+{
+    if(r>n)
+    {
+        return 0;
+    }
+    if(r==0||r==n)
+    {
+        return 1;
+    }
+    return binomialcoeff(n-1,r-1)+binomialcoeff(n-1,r);
+}
+int main()
+{
+    int n,r;
+    printf("n = ");
+    scanf("%d",&n);
+    printf("r = ");
+    scanf("%d",&r);
+    printf("value of  %dC%d is %d",n,r,binomialcoeff(n,r));
+    return 0;
+}
